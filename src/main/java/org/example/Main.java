@@ -11,6 +11,10 @@ public class Main {
     public static void main(String[] args) {
 
 
+        RandomGen randomGen = new RandomGen("myGraph", 3,10);
+        Graph graph = randomGen.generate();
+       // graph.display();
+       MyDjikistra myDjikistra = new MyDjikistra(graph, "0");
 
 
     }
