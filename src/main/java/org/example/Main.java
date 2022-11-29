@@ -11,11 +11,11 @@ public class Main {
     public static void main(String[] args) {
 
 
-        RandomGen randomGen = new RandomGen("myGraph", 3,10);
+        RandomGen randomGen = new RandomGen("myGraph", 3,5);
         Graph graph = randomGen.generate();
-       // graph.display();
+        
        MyDjikistra myDjikistra = new MyDjikistra(graph, "0");
-
+       graph.display();
 
     }
 }

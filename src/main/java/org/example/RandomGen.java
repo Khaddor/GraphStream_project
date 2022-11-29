@@ -19,8 +19,9 @@ public class RandomGen {
 
     public Graph generate(){
         System.setProperty("org.graphstream.ui", "swing");
+        
         Graph graph = new SingleGraph(GraphName);
-        Generator generator = new RandomGenerator(this.d);
+        Generator generator = new RandomGenerator(this.n);
         Random r = new Random();
 
         generator.addSink(graph);
@@ -34,9 +35,11 @@ public class RandomGen {
             e.setAttribute("poids" , r.nextInt(12) );
             e.setAttribute("ui.label" , e.getAttribute("poids"));
         });
-        graph.nodes().forEach(e -> {
-            System.out.println(e);
-        });
+        
+        for(int i = 0; i< graph.getNodeCount(); i++) {
+        	graph.getNode(i).setAttribute("ui.label", "node" + i);
+        }
+        
         return graph;
     }
 
