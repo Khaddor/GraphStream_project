@@ -9,7 +9,8 @@ Ce travail consiste à réaliser une implémentation de l’algorithme Djikistra
 Pour tester nos algorithmes, nous avons besoin de plusieurs graphes de plusieurs tailles, pour cela j’ai utilisé le « Random Graph Generator » du GraphStream pour une génération des graphes aléatoirement.
 J’ai créé une nouvelle classe nommée RandomGen, dans lequelle j’ai fait un constructeur qui initialise les variables de la classe : Nom du graphe, nombre des nœuds et le degré moyen des nœuds
 
-`public class RandomGen {
+```
+public class RandomGen {
     private String GraphName;
     private int n,d;
 
@@ -17,11 +18,13 @@ J’ai créé une nouvelle classe nommée RandomGen, dans lequelle j’ai fait u
         this.GraphName = GraphName;
         this.n = n;
         this.d = d;
-    }`
+    }
+```
 
 Puis j’ai créé la fonction generate() qui fait la génération du graphe aléatoire avec les variables données en constructeur, puis j’ai attribuer des poids aléatoirement aux arréts avec la bibliothéque random du Java
 
-` public Graph generate(){
+```
+public Graph generate(){
     System.setProperty("org.graphstream.ui", "swing");
         
     Graph graph = new SingleGraph(GraphName);
@@ -45,15 +48,16 @@ Puis j’ai créé la fonction generate() qui fait la génération du graphe al�
         }
         return graph;
     }
-}`
+}
+```
 
 # Version Naive de l’algorithme de Djikistra 
 
 Dans cette partie, j’ai essayé d’implémenter une version naive de l’algorithme de Djikistra à l’aide du cours.
 Djikistra est un algorithme de plus court chemin entre un sommet et tous les autres sommets, on peut généralement l’utiliser dans tous les cas sauf au cas où les poids sont négatifs.
 Pour implémenter une version naive de l’algorithme de Djikistra, j’ai utiliser les HashMaps, j’ai créé deux HashMaps : une pour l’enssemble des sommets non traités et une autre pour les sommets traités, ces HashMap contient les nœuds et distance associé, puis j’ai initialiser tous les distances à l’infini (Ineteger.MAX_VALUE du Java), sauf le sommet source fournit en paramétre du constructeur est initialiser avec 0.
-
-`    public MyDjikistra(Graph graph, String source){
+```
+  public MyDjikistra(Graph graph, String source){
         this.graph = graph;
         this.source = source;
 
@@ -69,12 +73,14 @@ Pour implémenter une version naive de l’algorithme de Djikistra, j’ai utili
         });
 
         //Initialiser le noued source par 0
-        nonVisited.replace(graph.getNode(source), 0);`
+        nonVisited.replace(graph.getNode(source), 0);
+```
 
         
 Ensuite, j’ai chercher le sommet avec la plus petite distance du source à l’aide d’une fonction que j’ai écrit getMinNode () qui parcourit l’enssemble des sommets non traités et extrait le sommet avec la plus petite distance en comparant les valeurs de chaque élement du HashMap, puis renvoie le Node avec cette distance.
 
-`   public Node getMinNode(HashMap<Node,Integer> nodes){
+```
+   public Node getMinNode(HashMap<Node,Integer> nodes){
         Entry<Node, Integer> x = null;
 
         //Chercher la plus petite valeur dans la HashMap
@@ -86,12 +92,13 @@ Ensuite, j’ai chercher le sommet avec la plus petite distance du source à l�
 
         //Renvoyer le Noeud avec la valeur minimale
         return  x.getKey();
-}`
+}
+```
 
 Puis, je fait une comparaison du distance des voisins des sommets afin de choisir le plus proche sommet du parent, après j’ajoute ce sommet dans l’ensemble des sommets traités (au même temps je le retire de l’ensemble des sommets non traités) et je met à jour la distance du voisins. 
 On refait cette itération pour tous les sommets dans l’ensemble des sommets non traités, jusqu’à moment où il n’y a aucun sommet dans la HashMap des sommets non traités.
-
-`        //parcourir tous les noeuds dans la liste des noueds non visités
+```
+      //parcourir tous les noeuds dans la liste des noueds non visités
         while(!nonVisited.isEmpty()){
 
         	//Extraire le noeuds avec la distance minimale
@@ -116,7 +123,8 @@ On refait cette itération pour tous les sommets dans l’ensemble des sommets n
                 nonVisited.remove(thisNode);
             }
             
-        }`
+        }
+```
 
 Pour vérifier le résultat de mon algorithme j’ai fait un affichage des distance de chaque sommets du nœuds source.
 //image de resultat
@@ -142,10 +150,12 @@ Pendant les tests que j’ai effectué, j’ai noté le temps d’éxécution de
 
 //image du graphe
 
+
 Depuis ce graphe, on peut voir que pour les petits à moyens graphes ( avec un nombre de nœuds inférieur), le temps d’éxécution moyen pour les deux algorithmes est très similaire.
 Cependant, quand on augemente la taille du graphe étudié, le temps d’éxécution de l’algorihtme dont j’ai implementé augemente d’une facon significative.
 En revanche, la version de l’algorithme de Djikistra de GraphStream, son temps d’éxécution reste stable et ne varie que d’une facon très légère. 
 Cette rapidité d’écécution de l’algorithme de GraphStream pour les grands graphes est grâce à L’implémentation qui utilise en interne Fibonacci Heap qui accèlére l’éxécution
+
 
 
 
