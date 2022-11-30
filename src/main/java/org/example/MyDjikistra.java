@@ -38,13 +38,11 @@ public class MyDjikistra {
 
         	//Extraire le noeuds avec la distance minimale
         	thisNode = getMinNode(nonVisited);
-
-        	
             if( thisNode == null){
+
                 //nonVisited.forEach((n,i) -> visited.put(n,i));
                 visited.put(thisNode,nonVisited.get(thisNode));
                 nonVisited.remove(thisNode);
-                
             }else{
                     //Parcourir tous les noeuds voisins du Nouveau noeud
             		thisNode.neighborNodes().forEach( v -> {
@@ -55,7 +53,6 @@ public class MyDjikistra {
 	                    		}
             				}
             		});
-            	
                //Deplacé le noeud traité de liste des noeuds non-visités vers la liste des noeuds visités
                 visited.put(thisNode,nonVisited.get(thisNode));
                 nonVisited.remove(thisNode);
@@ -71,15 +68,16 @@ public class MyDjikistra {
 
     //Fonction pour extraire le noeud avec le poids minimun
     public Node getMinNode(HashMap<Node,Integer> nodes){
-    	
-    	//HashMap<Node, Integer> r = new HashMap<Node, Integer>();
+
     	Entry<Node, Integer> x = null;
+
         //Chercher la plus petite valeur dans la HashMap
     	for (Entry<Node, Integer> node : nodes.entrySet()) {
     	    if (x == null || x.getValue() > node.getValue()) {
     	        x = (Entry<Node, Integer>) node;
     	    }
     	}
+
         //Renvoyer le Noeud avec la valeur minimale
 		return  x.getKey();
     }

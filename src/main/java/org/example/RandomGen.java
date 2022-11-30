@@ -21,12 +21,12 @@ public class RandomGen {
         System.setProperty("org.graphstream.ui", "swing");
         
         Graph graph = new SingleGraph(GraphName);
-        Generator generator = new RandomGenerator(this.n);
+        Generator generator = new RandomGenerator(this.d);
         Random r = new Random();
 
         generator.addSink(graph);
         generator.begin();
-        for(int i =0; i<d; i++){
+        for(int i =0; i<n; i++){
             generator.nextEvents();
         }
         generator.end();
@@ -39,8 +39,6 @@ public class RandomGen {
         for(int i = 0; i< graph.getNodeCount(); i++) {
         	graph.getNode(i).setAttribute("ui.label", "node" + i);
         }
-        
         return graph;
     }
-
 }
