@@ -127,7 +127,8 @@ On refait cette itération pour tous les sommets dans l’ensemble des sommets n
 ```
 
 Pour vérifier le résultat de mon algorithme j’ai fait un affichage des distance de chaque sommets du nœuds source.
-//image de resultat
+
+![courbe](résultates parcours.png)
 
 
 # Version De Djikistra de GraphStream 
@@ -148,7 +149,8 @@ Pour la mesures du temps d’éxécution, j’ai sauvegardé le temps avant et a
 # Résultats Obtenus 
 Pendant les tests que j’ai effectué, j’ai noté le temps d’éxécution de chaque algorithme avec le nombre des nœuds du graphe étudié pour les deux algorithmes, et j’ai obtenu les résultats suivants
 
-//image du graphe
+
+![courbe](courbe.png)
 
 
 Depuis ce graphe, on peut voir que pour les petits à moyens graphes ( avec un nombre de nœuds inférieur), le temps d’éxécution moyen pour les deux algorithmes est très similaire.
